@@ -1,0 +1,112 @@
+//
+//  hzx-Prefix.pch
+//  HZXNews
+//
+//  Created by ycmedia_imac on 17/2/3.
+//  Copyright © 2017年 何紫璇. All rights reserved.
+//
+
+#ifndef hzx_Prefix_pch
+#define hzx_Prefix_pch
+
+#import <Availability.h>
+
+#ifndef __IPHONE_5_0
+#warning "This project uses features only available in iOS SDK 5.0 and later."
+#endif
+
+#ifdef __OBJC__
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+
+// 网易新闻
+
+#import "RXMD5.h"
+#import "RXGeneSign.h"
+#import "RXUserDefaultTool.h"
+
+#import "UIBarButtonItem+YZ.h"
+#import "UIView+SZ.h"
+#import "UIImage+YZ.h"
+#import "HZXBaseButton.h"
+//#import "SDCycleScrollView.h"
+
+#import "UIImageView+WebCache.h"
+//#import "MJRefresh.h"
+//#import "Client.h"
+//#import "MLEmojiLabel.h"
+//#import "Utility.h"
+
+
+
+
+
+#define  btnImageScale 1.2
+
+#define KEY_WINDOW  [[UIApplication sharedApplication] keyWindow]
+#define iOS8 ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0)
+#define iOS7 ([[UIDevice currentDevice].systemVersion floatValue] >= 7.0)
+#define iOS6 ([[UIDevice currentDevice].systemVersion floatValue] < 7.0)
+
+
+// 得到UUID
+#define UUIDStr [RXMD5 getUUIDString]
+
+// 得到服务器地址
+#define serverPathAddress [RXUserDefaultTool getObjectForKey:@"serverPathAddress"]
+
+#define screenWidth   ([UIScreen mainScreen].bounds.size.width)
+#define screenHeight  ([UIScreen mainScreen].bounds.size.height)
+#define slideWidth (((screenWidth) / 4) * 3)
+#define IS_IPHONE_4S screenHeight < 568.0
+#define IS_IPHONE_5  screenHeight == 568
+
+// 自定义RGB颜色
+#define RXColor(r, g, b, a) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:(a)]
+// 是否为4inch
+#define iPhone4s ([UIScreen mainScreen].bounds.size.height < 568)
+#define iPhone5 ([UIScreen mainScreen].bounds.size.height == 568)
+//测试颜色
+#define testColor ([UIColor colorWithRed:0 green:225 blue:0 alpha:0.5])
+//statuBar的高度
+#define statusBarH 20
+//#define statusBarH  [UIApplication sharedApplication].statusBarFrame.size.height
+//navigationBar的高度
+#define navBarH 44
+//#define navBarH  self.navigationController.navigationBar.frame.size.height
+//tabBar的高度
+#define tabBarH 49
+//self.tabBarController.tabBar.frame.size.height
+//常用的淡橙色背景
+#define orangeBackgroundColor RXColor(255, 254, 241, 1.0)
+#define appid id462532069
+//自定义Log
+#ifdef DEBUG
+#define HZXLog(...) NSLog(__VA_ARGS__)
+#else
+#define HZXLog(...)
+#endif
+
+// 后台地址
+#define preAddress @"http://rx.92renxing.net/APII/"
+
+
+//--------------------------------------------------------------------------------------------------------------------------
+// 提示信息封装
+#define ShowErrorView [MBProgressHUD showError:json[@"msg"]];
+
+
+#endif
+// 动画
+typedef enum{
+    topViewClick = 0,
+    FromTopToTop = 1,
+    FromTopToTopLast = 2,
+    FromTopToBottomHead = 3,
+    FromBottomToTopLast = 4
+} animateType;
+
+
+#endif /* hzx_Prefix_pch */
+
+
